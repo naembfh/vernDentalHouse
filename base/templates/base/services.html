@@ -1,0 +1,16 @@
+
+  <!-- services -->
+  <section class="container">
+    <h3 class="section-title">Our Services</h3>
+    <p class="section-body">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate consequatur voluptas molestias rerum quam tempora! Eveniet aut vitae minus, doloremque natus accusamus esse, cum veritatis aspernatur dolore fugit consequuntur quam!</p>
+    <div class="services">
+      {% for service in dentalServices %}
+      <a href="{% url 'slots' service.id %}" class="service">
+        <img src="{{ service.image.url }}" alt="{{ service.name }}">
+        <p>{{ service.name }}</p>
+      </a>
+      {% endfor %}
+    
+    </div>
+  </section>
+

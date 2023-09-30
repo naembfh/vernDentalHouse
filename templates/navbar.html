@@ -1,0 +1,27 @@
+<nav id="desktop-nav">
+    <a href="/" class="logo">Vern Dental House</a>
+    <div>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="/Appointment">Appointment</a></li>
+        <li><a href="{% url 'login' %}">Login</a></li>
+      </ul>
+    </div>
+  </nav>
+  <nav id="hamburger-nav">
+    <a href="/" class="logo">Vern Dental House</a>
+    <div class="hamburger-menu">
+      <div class="hamburger-icon" onclick="toggleMenu()">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <div class="menu-links">
+        <li><a href="#about" onclick="toggleMenu()">About</a></li>
+        <li><a href="#experience" onclick="toggleMenu()">Experience</a></li>
+        <li><a href="/appointment" onclick="toggleMenu()">Appointment</a></li>
+        <li><a href="{% url 'login' %}" onclick="toggleMenu()">Login</a></li>
+      </div>
+    </div>
+  </nav>

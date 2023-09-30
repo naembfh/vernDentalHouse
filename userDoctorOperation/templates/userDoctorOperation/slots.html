@@ -1,0 +1,51 @@
+{% extends "index.html" %}
+{% block content %}
+<div class="slot-section">
+  <h3 class="section-title">Available slots for {{ dentalService.name }}</h3>
+  <div class="slots">
+      {% for slot in slotsInfo %}
+      <div class="slot">
+          <img src="{{ slot.doctorPhoto.url }}" alt="{{ slot.doctorName }}">
+          <h3>{{ slot.doctorName }}</h3>
+          
+<p>{{ slot.slotDate|date:"m/d/Y" }}</p>
+          <p>{{ slot.slotStartTime }} - {{ slot.slotEndTime }}</p>
+          {% if user.is_authenticated %}
+          <button class="openModalButton"
+          data-doctor-name="{{ slot.doctorName }}"
+          data-dental-service="{{ dentalService.name }}"
+          data-slot-date="{{ slot.slotDate }}"
+          data-slot-start-time="{{ slot.slotStartTime }}"
+          data-slot-end-time="{{ slot.slotEndTime }}"
+          data-slot-id ="{{ slot.id }}"
+          data-slot-email="{{ request.user.email }}">Book appointment</button>
+          {% else %}
+          <a href="{% url 'login' %}"  class="openLoginModalButton">Log in to book appointment</a>
+          {% endif %}
+
+      </div>
+      {% endfor %}
+      
+  </div>
+</div>
+<!-- modal -->
+<div id="modal-section">
+  <p class="modal-title" id="doctorNameTitle"></p>
+  <p class="modal-title" id="dentalServiceTitle"></p>
+  <form method="post" id="appointmentForm" action="{% url 'bookAppointment' }">
+    {% csrf_token %}
+    <div class="modal-form">
+      <input type="text" name="date" id="slotDateInput" placeholder="Date">
+      <input type="text" name="time" id="slotTimeInput" placeholder="Time">
+      <input type="text" name="name" placeholder="Full Name">
+      <input type="text" name="phone-number" placeholder="Phone Number">
+      <input type="email" name="email" id="slotUserEmail" placeholder="Email">
+      <input type="submit" value="Submit">
+    </div>
+  </form>
+  <p class="modal-cancel">X</p>
+</div>
+
+
+
+{% endblock content %}
