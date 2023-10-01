@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .models import DentalService
+from userDoctorOperation.models import Slot
 # Create your views here.
 def home(request):
     dentalServices=DentalService.objects.all()
@@ -9,5 +10,4 @@ def home(request):
     context={'dentalServices':dentalServices}
     return render(request,'base/base.html',context)
 
-def dashboard(request):
-    return render(request,'base/dashboard.html')
+

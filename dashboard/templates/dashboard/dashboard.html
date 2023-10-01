@@ -1,10 +1,10 @@
 {% extends "index.html" %}
 {% block content %}
   {% if request.user.userprofile.userType == 'admin' %}
-    {% include "base/admin-dashboard.html" %}
+    {% include "dashboard/admin-dashboard.html" %}
   {% elif request.user.userprofile.userType == 'doctor' %}
-    {% include "base/doctor-dashboard.html" %}
+    {% include "dashboard/doctor-dashboard.html" %}
   {% elif request.user.userprofile.userType == 'normal' %}
-    {% include "base/normal-dashboard.html" %}
+    {% include "dashboard/normal-dashboard.html" %}
   {% endif %}
 {% endblock content %}
