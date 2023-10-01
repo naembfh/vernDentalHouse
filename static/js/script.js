@@ -121,8 +121,14 @@ console.log(apiUrl)
         })
         .then(response => response.json())
         .then(data => {    
-            console.log(data.message);
+            // console.log(data)
+            // console.log(data.message);
             appointmentModal.style.display = "none";
+            if (data.success){
+                // console.log('success')
+                window.location.href = data.dashboard_url;
+            }
+            
         })
         .catch(error => {
             console.error("Error:", error);

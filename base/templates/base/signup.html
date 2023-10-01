@@ -1,0 +1,19 @@
+{% extends "index.html" %}
+{% block content %}
+<section class="signup-container">
+    <div class="signup-form-img">
+        <img src="" alt="" srcset="">
+    </div>
+    <div class="signup-form">
+        <h3>Sign up for Vern Dental</h3>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+                <button class="signup-btn" type="submit">Sign up</button>
+            </div>
+        </form>
+        <p class="signup-login">Already have an account? <a href="{% url 'login' %}">Please Sign in</a></p>
+    </div>
+</section>
+
+{% endblock content %}

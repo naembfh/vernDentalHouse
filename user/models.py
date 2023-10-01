@@ -1,12 +1,20 @@
+# user/models.py
 from django.db import models
-from django.contrib.auth.models import AbstractUser
-# Create your models here.
+from django.contrib.auth.models import User
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 
-class CustomUser(AbstractUser):
-    email = models.EmailField(unique=True) 
-    username = models.CharField(unique=True, max_length=150)  
-    image=models.ImageField(upload_to='users/images', blank=True,null=True)
-    is_doctor = models.BooleanField(default=False)
-    is_admin = models.BooleanField(default=False)
+class UserProfile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    userTypeChoices = [
+        ('admin', 'Admin'),
+        ('doctor', 'Doctor'),
+        ('normal', 'Normal User'),  # Default choice
+    ]
+    userType = models.CharField(max_length=10, choices=userTypeChoices, default='normal')
+    userImage = models.ImageField(upload_to='userImages/', blank=True, null=True)
+
     def __str__(self):
-        return self.username
+        return self.user.username
+
+

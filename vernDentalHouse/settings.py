@@ -101,12 +101,17 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
-AUTHENTICATION_BACKENDS = [
-    'user.auth_backends.EmailOrUsernameModelBackend',
-    # Other authentication backends...
-]
+# AUTHENTICATION_BACKENDS = [
+#     'user.auth_backends.EmailOrUsernameModelBackend',
+   
+# ]
+# AUTHENTICATION_BACKENDS = [
+#     'django.contrib.auth.backends.ModelBackend',
+#     # Other authentication backends if needed
+# ]
 
-AUTH_USER_MODEL = 'user.CustomUser'  # Replace 'your_app' with your app's name
+# AUTH_USER_MODEL = 'user.CustomUser' 
+
 
 
 # Internationalization

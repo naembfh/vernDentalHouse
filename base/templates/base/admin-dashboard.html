@@ -1,0 +1,34 @@
+<section class="dashboard">
+    <div class="dashboard-nav">
+      <a href="/all-users">View All Users</a>
+      <a href="/add-doctor">Add a Doctor</a>
+      <a href="/manage-doctors">Manage Doctors</a>
+      <a href="/">Go t o Home</a>
+    </div>
+    <div class="dashboard-room">
+     <h3>Add a New Doctor</h3>
+<form action="" class="add-doctor-form">
+<div class="form-input">
+    <input type="text" id="doctor-name" name="doctor-name" placeholder="Doctor's Name" required>
+</div>
+<div class="form-input">
+    <input type="email" id="doctor-email" name="doctor-email" placeholder="Doctor's Email" required>
+</div>
+<div class="form-input">
+    <select id="doctor-specialty" name="doctor-specialty" required>
+        <option value="" disabled selected>Select Specialty</option>
+        <option value="Dentistry">Dentistry</option>
+        <option value="Orthodontics">Orthodontics</option>
+        <option value="Endodontics">Endodontics</option>
+        <!-- Add more options as needed -->
+    </select>
+</div>
+<div class="form-input">
+    <input type="file" id="doctor-photo" name="doctor-photo" accept="image/*" required>
+</div>
+<button class="add-doctor-btn">Add Doctor</button>
+</form>
+
+        
+    </div>
+  </section>

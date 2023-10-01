@@ -15,8 +15,8 @@
         {% csrf_token %}
         <div class="login">
           <div class="login-input">
-            <p>Email</p>
-            <input type="email" name="email" placeholder="Please Enter Your Email Address" required>
+            <p>Username</p>
+            <input type="text" name="username" placeholder="Please Enter Your Email Address" required>
           </div>
           <div class="login-input">
             <p>Password</p>
@@ -38,7 +38,7 @@
     </div>
     <div class="signup-form">
       <h3>Sign up for Vern Dental</h3>
-      <form method="post" action="{% url 'signup' %}">
+      <form method="post">
         {% csrf_token %}
         <div class="signup">
           <div class="signup-input">

@@ -5,7 +5,11 @@
   <div class="slots">
       {% for slot in slotsInfo %}
       <div class="slot">
-          <img src="{{ slot.doctorPhoto.url }}" alt="{{ slot.doctorName }}">
+        {% if slot.doctorPhoto %}
+        <img src="{{ slot.doctorPhoto.url }}" alt="{{ slot.doctorName }}">
+      {% else %}
+        <p>No photo available</p>
+      {% endif %}
           <h3>{{ slot.doctorName }}</h3>
           
 <p>{{ slot.slotDate|date:"m/d/Y" }}</p>

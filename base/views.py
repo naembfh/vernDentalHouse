@@ -8,3 +8,6 @@ def home(request):
     # print(dentalServices)
     context={'dentalServices':dentalServices}
     return render(request,'base/base.html',context)
+
+def dashboard(request):
+    return render(request,'base/dashboard.html')
