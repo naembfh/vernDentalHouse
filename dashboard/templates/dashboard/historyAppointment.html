@@ -1,13 +1,44 @@
 {% extends "index.html" %}
+
 {% block content %}
 <section class="dashboard">
-    {% include "dashboard/normal-dashboard-nav.html" %}
+    {% if user.userprofile.userType == 'doctor' %}
+        {% include "dashboard/doctor-dashboard-nav.html" %}
+    {% elif user.userprofile.userType == 'admin' %}
+        {% include "dashboard/admin-dashboard-nav.html" %}
+    {% else %}
+        {% include "dashboard/normal-dashboard-nav.html" %}
+    {% endif %}
+    
     <div class="dashboard-room">
-        <h3>history</h3>
-
-
-           
-       </div>
+        <h3>History Appointment</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Doctor</th>
+                    <th>Services</th>
+                    <th>Payment Amount</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for appointment in paidAppointments %}
+                <tr>
+                    <td>{{ appointment.slot.date }}</td>
+                    <td>{{ appointment.slot.startTime }} - {{ appointment.slot.endTime }}</td>
+                    <td>{{ appointment.slot.doctor.user.username }}</td>
+                    <td>
+                        {% for specialty in appointment.slot.doctor.specialties.all %}
+                        {{ specialty.name }}
+                        {% if not forloop.last %}, {% endif %}
+                        {% endfor %}
+                    </td>
+                    <td>${{ appointment.amount }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 </section>
-
 {% endblock content %}

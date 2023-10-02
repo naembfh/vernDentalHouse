@@ -3,44 +3,54 @@
 {% block content %}
 <section class="dashboard">
     {% if user.userprofile.userType == 'doctor' %}
-    {% include "dashboard/doctor-dashboard-nav.html" %}
- 
+        {% include "dashboard/doctor-dashboard-nav.html" %}
+    {% elif user.userprofile.userType == 'admin' %}
+        {% include "dashboard/admin-dashboard-nav.html" %}
     {% else %}
-    {% include "dashboard/normal-dashboard-nav.html" %}
- 
+        {% include "dashboard/normal-dashboard-nav.html" %}
     {% endif %}
     
     <div class="dashboard-room">
         {% if user.userprofile.userType == 'doctor' %}
-        <h3>upcoming patient</h3>
-     
+            <h3>upcoming patient</h3>
+            {% elif user.userprofile.userType == 'admin' %} 
+           <h3>Upcoming Patient</h3>
         {% else %}
-        <h3>My Appointment</h3>
-     
+            <h3>My Appointment</h3>
         {% endif %}
-        <table class="appointments-table">
+        <table class="table table-hover">
             <thead>
                 <tr>
-                    <th>Date</th>
-                    <th>Time</th>
-                    <th>Service</th>
-                    <th>{% if user.userprofile.userType == 'doctor' %}Patient{% else %}Doctor{% endif %}</th>
-                    <th>Action</th>
+                    <th scope="col">#</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Time</th>
+                    <th scope="col">Service</th>
+                    <th scope="col">{% if user.userprofile.userType == 'doctor' %}Patient{% else %}Doctor{% endif %}</th>
+                    <th scope="col">Action</th>
                 </tr>
             </thead>
             <tbody>
                 {% for appointment in appointments %}
                 <tr>
+                    <th scope="row">{{ forloop.counter }}</th>
                     <td>{{ appointment.date }}</td>
                     <td>{{ appointment.startTime }} - {{ appointment.endTime }}</td>
                     <td>{{ appointment.doctor.specialties.first }}</td>
-                    <td>{% if user.userprofile.userType == 'doctor' %}{{ appointment.patient }}{% else %}{{ appointment.doctor.user.username }}{% endif %}</td>
                     <td>
-                        {% if user.userprofile.userType == 'normal' %}
-                        <a href="{% url 'cancelAppointment' appointment.id %}">Cancel</a>
-                        {% endif %}
                         {% if user.userprofile.userType == 'doctor' %}
-                        <a href="{% url 'cancelAppointment' appointment.id %}">Cancel</a>
+                        {{ appointment.patient }}
+                        {% else %}
+                        {{ appointment.doctor.user.username }}
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if user.userprofile.userType == 'admin' %}
+                            <a href="{% url 'cancelAppointment' appointment.id %}">Cancel</a> |
+                            <a href="{% url 'makePayment' appointment.id %}">Pay</a>
+                        {% elif user.userprofile.userType == 'normal' %}
+                            <a href="{% url 'cancelAppointment' appointment.id %}">Cancel</a>
+                        {% elif user.userprofile.userType == 'doctor' %}
+                            <a href="{% url 'cancelAppointment' appointment.id %}">Cancel</a>
                         {% endif %}
                     </td>
                 </tr>

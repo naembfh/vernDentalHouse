@@ -1,0 +1,66 @@
+<section class="container">
+    <div class="hour-location-contact">
+        <div class="open-hour">
+            <img src="./logo/time.png" alt="">
+            <div>
+                <h3>Opening Hours</h3>
+                <p>Open 9.00 am to 5.00pm Everyday</p>
+            </div>
+        </div>
+        <div class="our-location">
+            <img src="./logo/time.png" alt="">
+            <div>
+                <h3>Our Locations</h3>
+                <p>Dhanmondi 17, Dhaka -1200, Bangladesh</p>
+            </div>
+        </div>
+        <div class="contact-us">
+            <img src="./logo/phone.png" alt="">
+            <div>
+                <h3>Contact Us</h3>
+                <p>+88 01750 00 00 00</p>
+                <p>+88 01750 00 00 00</p>
+            </div>
+        </div>
+    </div>
+    <div>
+    
+    </div>
+    <div>
+    
+    </div>
+    </section>
+    
+    <!-- contact -->
+
+     <section class="container">
+        <div class="contact">
+            <div>
+                <h3 class="section-title">Contact With Us Free Consultation</h3>
+                <p class="section-body">Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis sed soluta temporibus in hic at, quos reiciendis quod. Incidunt esse nobis quas dolore eligendi placeat, iusto sit magni porro quia.</p>
+                <div class="contact-detail">
+                    <img src="./logo/phone.png" alt="">
+                    <p>+88 01750 14 14 14</p>
+                </div>
+                <div class="contact-location">
+                    <img src="./logo/location.png" alt="">
+                    <p>Dhanmondi, Dhaka, Banglades</p>
+                </div>
+            </div>
+            <div class="contact-form">
+                <form method="post" action="">
+                    {% csrf_token %}
+                    <div class="appointment-form">
+                        <input type="text" name="name" id="" placeholder="Name" required>
+                        <input type="email" name="email" id="" placeholder="Email" required>
+                        <input type="number" name="mobile_number" placeholder="Mobile Number" required>
+                        <input type="text" name="doctor_name" id="" placeholder="Doctor Name" required>
+                        <input type="time" name="preferred_time" placeholder="Time" required>
+                        <input type="date" name="preferred_date" placeholder="Date" required>
+                        
+                    </div>
+                    <button>Book Now</button>
+                </form>
+            </div>
+        </div>
+      </section>

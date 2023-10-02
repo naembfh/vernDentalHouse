@@ -1,0 +1,46 @@
+{% extends "index.html" %}
+
+{% block content %}
+<section class="dashboard">
+    {% if user.userprofile.userType == 'admin' %}
+    {% include "dashboard/admin-dashboard.html" %}
+    {% endif %}
+    
+    <div class="dashboard-room">
+        <h2>Consultations</h2>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Mobile Number</th>
+                <th>Doctor Name</th>
+                <th>Preferred Time</th>
+                <th>Preferred Date</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for consultation in consultations %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ consultation.name }}</td>
+                <td>{{ consultation.email }}</td>
+                <td>{{ consultation.mobile_number }}</td>
+                <td>{{ consultation.doctor_name }}</td>
+                <td>{{ consultation.preferred_time }}</td>
+                <td>{{ consultation.preferred_date }}</td>
+                <td>
+                    {% if not consultation.isConsultate %}
+                    <button class="btn btn-primary">Action</button>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+        
+    </div>
+</section>
+{% endblock content %}

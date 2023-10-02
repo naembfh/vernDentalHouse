@@ -1,0 +1,25 @@
+{% extends "index.html" %}
+
+{% block content %}
+<section class="dashboard">
+    {% if user.userprofile.userType == 'admin' %}
+    {% include "dashboard/admin-dashboard-nav.html" %}
+
+ 
+    {% endif %}
+    
+    <div class="dashboard-room">
+       
+        <h2>Payment Management</h2>
+        <p>Manage payments for slot: {{ payment.slot }}</p>
+    
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+    
+            <button type="submit" class="btn btn-primary">Save Payment</button>
+        </form>
+           
+       </div>
+</section>
+{% endblock content %}

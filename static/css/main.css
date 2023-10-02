@@ -22,134 +22,7 @@ body{
   
 
 
-/* navbar */
-/* desktop nav */
-.btn {
-    transition: all 300ms ease;
-  }
-  
 
-  
-  nav,
-  .nav-links {
-    display: flex;
-  }
-  
-  nav {
-    justify-content: space-around;
-    align-items: center;
-    height: 100px;
-    background-color: #07332F;
-  }
-  
-  .nav-links {
-    gap: 32px;
-    list-style: none;
-    font-size: 24px;
-  }
-  
-  a {
-    color: white;
-    text-decoration: none;
-    text-decoration-color: white;
-  }
-  
-  a:hover {
-    color: grey;
-    text-decoration: underline;
-    text-underline-offset: 16px;
-    text-decoration-color: rgb(181, 181, 181);
-  }
-  
-  .logo {
-    font-size: 32px;
-  }
-  
-  .logo:hover {
-    cursor: default;
-  }
-  
-  /* responsive nav */
-  
-  #hamburger-nav {
-    display: none;
-    color: white;
-  }
-  
-  .hamburger-menu {
-    position: relative;
-    display: inline-block;
-  }
-  
-  .hamburger-icon {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 24px;
-    width: 30px;
-    cursor: pointer;
-    background-color: white;
-  }
-  
-  .hamburger-icon span {
-    width: 100%;
-    height: 2px;
-    background-color: black;
-    transition: all 0.3s ease-in-out;
-  }
-  
-  .menu-links {
-    position: absolute;
-    top: 100%;
-    right: 0;
-    background-color: #07332F;
-    width: fit-content;
-    max-height: 0;
-    overflow: hidden;
-    transition: all 0.3s ease-in-out;
-  }
-  
-  .menu-links a {
-    display: block;
-    padding: 10px;
-    text-align: center;
-    font-size: 24px;
-    color: white;
-    text-decoration: none;
-    transition: all 0.3s ease-in-out;
-  }
-  
-  .menu-links li {
-    list-style: none;
-  }
-  
-  .menu-links.open {
-    max-height: 300px;
-  }
-  
-  .hamburger-icon.open span:first-child {
-    transform: rotate(45deg) translate(10px, 5px);
-  }
-  
-  .hamburger-icon.open span:nth-child(2) {
-    opacity: 0;
-  }
-  
-  .hamburger-icon.open span:last-child {
-    transform: rotate(-45deg) translate(10px, -5px);
-  }
-  
-  .hamburger-icon span:first-child {
-    transform: none;
-  }
-  
-  .hamburger-icon span:first-child {
-    opacity: 1;
-  }
-  
-  .hamburger-icon span:first-child {
-    transform: none;
-  }
   
 /* services */
 .services{
@@ -192,6 +65,99 @@ font-size: 16px;
 font-style: normal;
 font-weight: 600;
 line-height: normal;
+}
+
+/* contact */
+.contact {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 30px px;
+  border-radius: 10px;
+  background-color: #07332f;
+  padding: 100px;
+  color: white;
+  margin-top: 30px;
+}
+.contact-detail,
+.contact-location {
+  display: flex;
+  align-items: center;
+}
+.contact-detail img,
+.contact-location img {
+  width: 30px;
+  height: 30px;
+  padding-right: 20px;
+}
+.appointment-form {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 20px;
+}
+.contact-form {
+  margin-left: 20px;
+}
+.appointment-form input {
+  width: 275px;
+  height: 45px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.05);
+  color: white;
+  padding: 10px;
+  border: none;
+  /* text-align: center; */
+}
+.appointment-form input:focus{
+    outline: none;
+    font-size: 20px;
+}
+.appointment-form input:valid{
+    font-size: 20px;
+}
+.contact-form button {
+  width: 595px;
+  height: 64px;
+  border-radius: 10px;
+  background: #f7a582;
+  margin-top: 20px;
+  color: #fff;
+  font-family: "Source Sans 3", sans-serif;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+/* location hour contact */
+.hour-location-contact {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 30px;
+  margin-top: 30px;
+  color: white;
+}
+.open-hour img,
+.contact-us img,
+.our-location img {
+  width: 50px;
+  height: 50px;
+  padding: 30px;
+}
+.open-hour,
+.contact-us {
+  background: #07332f;
+}
+.our-location {
+  background: #f7a582;
+}
+.open-hour,
+.contact-us,
+.our-location {
+  width: 364px;
+  height: 202px;
+  display: flex;
+  align-items: center;
+  border-radius: 10px;
 }
 
   /* login */
@@ -571,114 +537,3 @@ background-color: white;
 }
 
 
-/* dashboard */
-
-.dashboard{
-  display: grid;
-  grid-template-columns: 1fr 5fr;
-  /* display: flex; */
- grid-row-gap: 10px;
-  background-color: #e8ecf0;
-  height: 100vh;
-}
-.dashboard-nav{
-  display: flex;
-  flex-direction: column;
-  /* justify-content: center; */
-  background-color: white;
-  
-}
-.dashboard-nav a{
-  text-decoration: none;
-  color: black;
-font-family: Open Sans;
-font-size: 20px;
-font-style: normal;
-font-weight: 700;
-line-height: 60px;
-padding: 20px 40px;
-}
-.dashboard-nav a:hover{
-  background-color: #bfd1e4;
-  border-radius: 2px;
-}
-.dashboard-room{
-  width: 540px;
-  height: 653px;
-  border-radius: 10px;
-margin: 80px;
-background: #FFF;
-
-}
-/* add doctor */
-.add-doctor-form .form-input{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-.form-input {
-  margin-bottom: 20px;
-  width: 100%;
-}
-
-.form-input input[type="text"],
-.form-input input[type="email"],
-.form-input input[type="file"],
-.form-input select {
-  width: 361px;
-  height: 66px;
-  flex-shrink: 0;
-  border-radius: 10px;
-  background: #F3F3F3;
-  border: none;
-  padding-left: 10px;
-  font-size: 16px;
-  font-family: "Source Sans 3", sans-serif;
-}
-
-.form-input input[type="text"]:focus,
-.form-input input[type="email"]:focus,
-.form-input input[type="file"]:focus,
-.form-input select:focus {
-  outline: none;
-  font-size: 20px;
-}
-
-.form-input input[type="text"]:valid,
-.form-input input[type="email"]:valid,
-.form-input input[type="file"]:valid,
-.form-input select:valid {
-  font-size: 20px;
-}
-
-.form-input input[type="file"] {
-  padding-top: 5px; /* Adjust as needed to vertically center the file input */
-}
-
-.add-doctor-btn {
-  width: 361px;
-  height: 66px;
-  border-radius: 10px;
-  background: #07332F;
-  margin-top: 30px;
-  color: #FFF;
-  font-family: Source Sans 3;
-  font-size: 20px;
-  font-weight: 700;
-  line-height: normal;
-  border: none;
-}
-
-.add-doctor-btn:hover {
-  background-color: #F7A582;
-}
-
-.add-doctor-form h3 {
-  color: #0A0808;
-  font-family: Source Sans 3;
-  font-size: 24px;
-  font-weight: 700;
-  margin-bottom: 20px;
-}

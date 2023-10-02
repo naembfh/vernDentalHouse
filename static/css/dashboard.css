@@ -1,0 +1,112 @@
+/* dashboard */
+
+.dashboard{
+    display: grid;
+    grid-template-columns: 1fr 5fr;
+    /* display: flex; */
+   grid-row-gap: 10px;
+    background-color: #e8ecf0;
+    height: 100vh;
+  }
+  .dashboard-nav{
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    background-color: white;
+    
+  }
+  .dashboard-nav a {
+    text-decoration: none;
+    color: black;
+  font-family: Open Sans;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 60px;
+  padding: 20px ;
+  }
+  .dashboard-nav a:hover{
+    background-color: #bfd1e4;
+    border-radius: 2px;
+  }
+  .dashboard-room{
+    width: 540px;
+    height: 653px;
+    border-radius: 10px;
+  margin: 80px;
+  background: #FFF;
+  
+  }
+  /* add doctor */
+  .add-doctor-form .form-input{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .form-input {
+    margin-bottom: 20px;
+    width: 100%;
+  }
+  
+  .form-input input[type="text"],
+  .form-input input[type="email"],
+  .form-input input[type="file"],
+  .form-input select {
+    width: 361px;
+    height: 66px;
+    flex-shrink: 0;
+    border-radius: 10px;
+    background: #F3F3F3;
+    border: none;
+    padding-left: 10px;
+    font-size: 16px;
+    font-family: "Source Sans 3", sans-serif;
+  }
+  
+  .form-input input[type="text"]:focus,
+  .form-input input[type="email"]:focus,
+  .form-input input[type="file"]:focus,
+  .form-input select:focus {
+    outline: none;
+    font-size: 20px;
+  }
+  
+  .form-input input[type="text"]:valid,
+  .form-input input[type="email"]:valid,
+  .form-input input[type="file"]:valid,
+  .form-input select:valid {
+    font-size: 20px;
+  }
+  
+  .form-input input[type="file"] {
+    padding-top: 5px; /* Adjust as needed to vertically center the file input */
+  }
+  
+  .add-doctor-btn {
+    width: 361px;
+    height: 66px;
+    border-radius: 10px;
+    background: #07332F;
+    margin-top: 30px;
+    color: #FFF;
+    font-family: Source Sans 3;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: normal;
+    border: none;
+  }
+  
+  .add-doctor-btn:hover {
+    background-color: #F7A582;
+  }
+  
+  .add-doctor-form h3 {
+    color: #0A0808;
+    font-family: Source Sans 3;
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 20px;
+  }
+  

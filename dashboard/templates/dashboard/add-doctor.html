@@ -1,0 +1,22 @@
+{% extends "index.html" %}
+
+{% block content %}
+<section class="dashboard">
+    {% if user.userprofile.userType == 'admin' %}
+    {% include "dashboard/admin-dashboard-nav.html" %}
+
+ 
+    {% endif %}
+    
+    <div class="dashboard-room">
+       
+        <h1>Add Doctor</h1>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Add Doctor</button>
+        </form>
+           
+       </div>
+</section>
+{% endblock content %}
