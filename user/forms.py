@@ -15,7 +15,7 @@ class SignUpForm(UserCreationForm):
         if password1 and password2 and password1 != password2:
             raise ValidationError("Passwords do not match.")
 
-        # Add your password validation logic here (e.g., minimum length, complexity requirements)
+       
 
         return password2
 class LoginForm(AuthenticationForm):

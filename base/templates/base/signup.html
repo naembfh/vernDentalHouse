@@ -1,19 +1,43 @@
 {% extends "index.html" %}
+
 {% block content %}
+{% load static %}
 <section class="signup-container">
     <div class="signup-form-img">
-        <img src="" alt="" srcset="">
+        <img src="{% static 'images/doctor-1.png' %}" alt="" srcset="">
     </div>
     <div class="signup-form">
         <h3>Sign up for Vern Dental</h3>
         <form method="post">
             {% csrf_token %}
-            {{ form.as_p }}
-                <button class="signup-btn" type="submit">Sign up</button>
+            
+            <!-- Username Field -->
+            <div class="signup-input">
+                <p>Username</p>
+                <input type="text" name="username" id="id_username" required>
             </div>
+            
+            <!-- Email Field -->
+            <div class="signup-input">
+                <p>Email</p>
+                <input type="email" name="email" id="id_email" required>
+            </div>
+            
+            <!-- Password Field -->
+            <div class="signup-input">
+                <p>Password</p>
+                <input type="password" name="password1" id="id_password1" required>
+            </div>
+            
+            <!-- Confirm Password Field -->
+            <div class="signup-input">
+                <p>Confirm Password</p>
+                <input type="password" name="password2" id="id_password2" required>
+            </div>
+            
+            <button class="signup-btn" type="submit">Sign up</button>
         </form>
         <p class="signup-login">Already have an account? <a href="{% url 'login' %}">Please Sign in</a></p>
     </div>
 </section>
-
-{% endblock content %}
+{% endblock %}
