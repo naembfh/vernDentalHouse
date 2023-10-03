@@ -1,0 +1,42 @@
+/* services */
+.services {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  margin-top: 40px;
+}
+.service {
+  width: 220px;
+  height: 250px;
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: 10px 9px 60px 0px rgba(58, 15, 15, 0.026);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 5px;
+}
+.service:hover {
+  box-shadow: 10px 9px 60px 0px rgba(191, 186, 184, 0.916);
+  border-radius: 10px;
+}
+
+.service img {
+  width: 80px;
+  height: 74px;
+  /* color: #FF7D7D, #FF2F2F; */
+}
+.service img:hover {
+  width: 88px;
+  height: 80px;
+}
+.service p {
+  color: #3b3a3a;
+  text-align: center;
+
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+

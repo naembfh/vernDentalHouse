@@ -6,7 +6,7 @@ from .forms import SlotForm ,AddDoctorForm,PaymentForm
 from django.contrib.auth.models import User
 from base.models import Consultation
 from django.utils import timezone
-from django.db.models import F, ExpressionWrapper, fields
+from django.db.models import F, ExpressionWrapper, fields,Q
 from django.core.exceptions import ObjectDoesNotExist
 # Create your views here.
 def dashboard(request):
@@ -26,11 +26,11 @@ def userDoctorAppointment(request):
     else:
         appointments = appointments.filter(patient=user)
         appointments = appointments.annotate(
-            is_upcoming=ExpressionWrapper(
-                F('date') >= timezone.now().date(),
-                output_field=fields.BooleanField(),
-            ),
-        ).order_by('-is_upcoming', 'date', 'startTime')
+        is_upcoming=ExpressionWrapper(
+            Q(date__gte=timezone.now().date()), 
+            output_field=fields.BooleanField(),
+        ),
+    ).order_by('-is_upcoming', 'date', 'startTime')
 
  # excluding
     successful_payments = Payment.objects.filter(slot__in=appointments, is_successful=True)
@@ -88,36 +88,29 @@ def cancelAppointment(request, appointmentId):
 def createSlot(request):
     if request.user.userprofile.userType in ['doctor', 'admin']:
         if request.method == 'POST':
-            print('post')
             form = SlotForm(request.POST)
             if form.is_valid():
-                # print('here')
-                
-                new_slot = form.save(commit=False)
+                newSlot = form.save(commit=False)
                 if request.user.userprofile.userType == 'doctor':
-                    # print('inside')
-                    new_slot.doctor = request.user.doctor
+                    print('doctor')
+                    newSlot.doctor = request.user
                 elif request.user.userprofile.userType == 'admin':
-                    selected_doctor = form.cleaned_data.get('doctor')
-                    doctorId = selected_doctor.id
-                    try:
-                        selected_doctor = Doctor.objects.get(id=doctorId)
-                        new_slot.doctor = selected_doctor
-                    except Doctor.DoesNotExist:
-                        pass
-
-                new_slot.save()
-                return redirect('dashboard')  
-
+                    selectedDoctor = form.cleaned_data.get('doctor')
+                    print(selectedDoctor)
+                    if selectedDoctor:
+                        newSlot.doctor = selectedDoctor
+                newSlot.save()
+                return redirect('listUnbookedSlots')  
         else:
             form = SlotForm()
-
+        
         if request.user.userprofile.userType == 'admin':
             doctors = Doctor.objects.all()
+            print(doctors,'admin')
         else:
-            doctors = request.user.doctor
-            # print(doctors)
-
+            doctors = request.user
+            print(doctors,'doctor')
+        
         return render(request, 'dashboard/create-slot.html', {'form': form, 'doctors': doctors})
     return redirect('dashboard')
 
@@ -180,4 +173,13 @@ def makePayment(request, slotId):
         form = PaymentForm(instance=payment)
     return render(request, 'dashboard/payment.html', {'form': form, 'payment': payment, 'slot': slot})
     
-    
+def listUnbookedSlots(request):
+    user = request.user
+
+    if user.userprofile.userType == 'admin':
+        unbookedSlots = Slot.objects.filter(isBooked=False).order_by('date', 'startTime')
+    elif user.userprofile.userType == 'doctor':
+        unbookedSlots = Slot.objects.filter(doctor=user.doctor, isBooked=False).order_by('date', 'startTime')
+    # print(unbookedSlots)
+
+    return render(request, 'dashboard/list-Unbooked-Slots.html', {'unbookedSlots': unbookedSlots})

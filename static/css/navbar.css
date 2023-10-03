@@ -27,18 +27,20 @@
   a {
     color:#dd602b;;
     text-decoration: none;
-    text-decoration-color: #F7A582;;
+    background: white;
+    padding: 8px;
+    border-radius: 8px;
   }
   
   a:hover {
-    /* color: grey; */
-    text-decoration: underline;
-    text-underline-offset: 16px;
-    text-decoration-color: #F7A582;;
+    color: white;
+    background-color: #F7A582;
+    font-weight: bold;
   }
   
   .logo {
     font-size: 32px;
+    font-weight: bolder;
   }
   
   .logo:hover {

@@ -4,12 +4,12 @@
 <section class="dashboard">
     {% if user.userprofile.userType == 'doctor' %}
     {% include "dashboard/doctor-dashboard-nav.html" %}
-    {% else %}
-    {% include "dashboard/admin-dashboard.html" %}
+    {% elif user.userprofile.userType == 'admin' %}
+    {% include "dashboard/admin-dashboard-nav.html" %}
     {% endif %}
     
     <div class="dashboard-room">
-        {% if user.userprofile.userType == 'doctor' or user.userprofile.userType == 'admin' %}
+       
         <h3>Create a New Slot</h3>
         <form method="post" action="{% url 'createSlot' %}" class="add-doctor-form">
             {% csrf_token %}
@@ -37,16 +37,16 @@
                 </select>
             </div>
             {% elif user.userprofile.userType == 'doctor' %}
-            <!-- For doctors, pre-select their own name -->
+         
             <div class="form-input">
                 <label for="id_doctor">Doctor</label>
-                <input type="text" id="id_doctor" name="doctor" value="{{ user.doctor.user.username }}" readonly>
+                <input type="text" id="id_doctor" name="doctor" value="{{ request.user.username }}" >
             </div>
             {% endif %}
             
             <button class="add-doctor-btn" type="submit">Create Slot</button>
         </form>
-        {% endif %}
+
     </div>
 </section>
 {% endblock content %}

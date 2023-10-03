@@ -1,7 +1,8 @@
 <div class="dashboard-nav">
-    <a href="{% url 'userDoctorAppointment' %}">My Upcoming Patient</a>
-    <a href="{% url 'HistoryAppointment' %}">History Appointment</a>
-    <a href="{% url 'createSlot' %}">Create Slot</a>
-    <a href="/">Go to Home</a>
-  </div>
+  <button><a href="{% url 'userDoctorAppointment' %}">My Upcoming Patient</a></button>
+  <button><a href="{% url 'historyAppointment' %}">History Appointment</a></button>
+  <button><a href="{% url 'listUnbookedSlots' %}">Unbook Slots</a></button>
+  <button><a href="{% url 'createSlot' %}">Create Slot</a></button>
+  <button><a href="/">Go to Home</a></button>
+</div>
 

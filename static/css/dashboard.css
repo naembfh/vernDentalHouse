@@ -1,42 +1,48 @@
 /* dashboard */
 
-.dashboard{
-    display: grid;
-    grid-template-columns: 1fr 5fr;
-    /* display: flex; */
-   grid-row-gap: 10px;
-    background-color: #e8ecf0;
-    height: 100vh;
-  }
-  .dashboard-nav{
-    display: flex;
-    flex-direction: column;
-    /* justify-content: center; */
-    background-color: white;
-    
-  }
-  .dashboard-nav a {
-    text-decoration: none;
-    color: black;
+.dashboard {
+  display: grid;
+  grid-template-columns: 1fr 5fr;
+  grid-row-gap: 10px;
+  background-color: #e8ecf0;
+  height: 100vh;
+}
+
+.dashboard-nav {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+}
+
+.dashboard-nav button {
+  background: none;
+  border: none;
+  text-align: left;
+  padding: 0;
+  cursor: pointer;
+}
+
+.dashboard-nav button a {
+  text-decoration: none;
+  color: black;
   font-family: Open Sans;
   font-size: 20px;
   font-style: normal;
   font-weight: 700;
   line-height: 60px;
-  padding: 20px ;
-  }
-  .dashboard-nav a:hover{
-    background-color: #bfd1e4;
-    border-radius: 2px;
-  }
-  .dashboard-room{
-    width: 540px;
-    height: 653px;
-    border-radius: 10px;
-  margin: 80px;
-  background: #FFF;
-  
-  }
+  padding: 20px;
+  transition: background-color 0.3s, color 0.3s;
+  display: block;
+  white-space: nowrap; /* Prevent text from breaking into multiple lines */
+}
+
+.dashboard-nav button:hover a {
+  background-color: #e8ecf0;
+  color: #F7A582;
+}
+.dashboard-room{
+  margin: 30px;
+}
   /* add doctor */
   .add-doctor-form .form-input{
     display: flex;
@@ -110,3 +116,36 @@
     margin-bottom: 20px;
   }
   
+/* table */
+
+table.table-hover {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+table.table-hover th,
+table.table-hover td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid #e8ecf0;
+}
+
+table.table-hover th {
+  background-color: #f0f3f5;
+  font-weight: bold;
+}
+
+table.table-hover tbody tr:hover {
+  background-color: #e8ecf0;
+  transition: background-color 0.3s;
+}
+
+
+table.table-hover tbody tr:nth-child(even) {
+  background-color: #f0f3f5;
+}
+
+table.table-hover tbody tr:nth-child(odd) {
+  background-color: #ffffff;
+}
