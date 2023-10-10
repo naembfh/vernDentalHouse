@@ -11,17 +11,63 @@
     <link rel="stylesheet" href="{% static 'css/services.css' %}">
     <link rel="stylesheet" href="{% static 'css/contact.css' %}">
 
+  
 </head>
 <body>
     {% include "navbar.html" %}
+  
+    {% include "showSuperUserCredentials.html" %}
+    {% if messages %}
+    <!-- Message Modal -->
+    <div class="modal" id="successModal">
+        <div class="modal-content">
+            <span class="close" id="closeBtn">&times;</span>
+            <h2>Message</h2>
+            {% for message in messages %}
+                <p class="{% if message.tags %}{{ message.tags }}{% endif %}">
+                    {% if message.tags == 'error' %}
+                        <span class="error-icon">Error:</span> {{ message }}
+                    {% else %}
+                        {{ message }}
+                    {% endif %}
+                </p>
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+
     <main>
-    {% block content %}
-      
-    {% endblock content %}
-</main>
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        {% block content %}
+        {% endblock content %}
+    </main>
+
+    <div id="superuserModal" class="supermodal">
+        <div class="super-modal-content">
+            <span id="superCancelButton" class="cancel-button">&times;</span>
+            <h2>Superuser Login</h2>
+            <p>Username: admin</p>
+            <p>Password: 1234</p>
+        </div>
+    </div>
+
+    <script>
+        const superuserModal = document.getElementById('superuserModal');
+        const modalDismissed = localStorage.getItem('superuserModalDismissed');
+        // console.log(modalDismissed)
+        if (!modalDismissed) {
+            // console.log('here')
+            superuserModal.style.display = 'block';
+        }
+
+        document.getElementById('superCancelButton').addEventListener('click', function () {
+            superuserModal.style.display = 'none';
+            localStorage.setItem('superuserModalDismissed', 'true');
+        });
+    </script>
+
+   
+
     <script src="{% static 'js/script.js' %}"></script>
+    <script src="{% static 'js/modalMessage.js' %}"></script>
 </body>
 </html>
