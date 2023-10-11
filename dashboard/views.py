@@ -8,6 +8,7 @@ from base.models import Consultation
 from django.utils import timezone
 from django.db.models import F, ExpressionWrapper, fields,Q
 from django.core.exceptions import ObjectDoesNotExist
+from django.contrib import messages
 # Create your views here.
 def dashboard(request):
     return render(request,'dashboard/dashboard.html')
@@ -81,6 +82,7 @@ def cancelAppointment(request, appointmentId):
         appointment.patient = None
         appointment.isBooked = False
         appointment.save()
+        messages.success(request, 'The appointment successfully cancel!')
     return redirect('userDoctorAppointment')
 
 
@@ -100,7 +102,10 @@ def createSlot(request):
                     if selectedDoctor:
                         newSlot.doctor = selectedDoctor
                 newSlot.save()
+                messages.success(request, 'Slot created successfully.')
                 return redirect('listUnbookedSlots')  
+            else:
+                print(form.errors)
         else:
             form = SlotForm()
         
@@ -128,6 +133,7 @@ def makeAdmin(request,userId):
     # print(user)
     user.userprofile.userType = 'admin'
     user.userprofile.save()
+    messages.success(request, f'{user.username} successfully become admin.')
     return redirect('addDoctorAddAdmin')
 
 def addDoctor(request,userId):
@@ -141,6 +147,7 @@ def addDoctor(request,userId):
             doctor, created = Doctor.objects.get_or_create(user=user)
             specialties = form.cleaned_data['specialties']
             doctor.specialties.set(specialties)
+            messages.success(request, f'Dr {user.username} successfully added.')
             return redirect('addDoctorAddAdmin')
     else:
         form = AddDoctorForm(user)
@@ -150,6 +157,7 @@ def addDoctor(request,userId):
 
 def bookForConsultate(request):
     consultations = Consultation.objects.all()
+    
     return render (request,'dashboard/bookForConsultate.html',{'consultations':consultations})
 
 def makePayment(request, slotId):
@@ -168,7 +176,8 @@ def makePayment(request, slotId):
             payment.slot = slot  
             payment. is_successful=True
             payment.save()
-            return redirect('home')
+            messages.success(request, 'Payment created successfully.')
+            return redirect('historyAppointment')
     else:
         form = PaymentForm(instance=payment)
     return render(request, 'dashboard/payment.html', {'form': form, 'payment': payment, 'slot': slot})

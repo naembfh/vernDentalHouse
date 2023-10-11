@@ -13,6 +13,15 @@
         <h3>Create a New Slot</h3>
         <form method="post" action="{% url 'createSlot' %}" class="add-doctor-form">
             {% csrf_token %}
+            {% if form.errors %}
+    <ul class="errorlist">
+        {% for field_errors in form.errors.values %}
+            {% for error in field_errors %}
+                <li>{{ error }}</li>
+            {% endfor %}
+        {% endfor %}
+    </ul>
+{% endif %}
             <div class="form-input">
                 <label for="id_date">Select Date</label>
                 <input type="date" id="id_date" name="date" required>

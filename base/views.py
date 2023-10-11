@@ -2,7 +2,7 @@ from django.shortcuts import render,redirect
 from .models import DentalService,Consultation
 from userDoctorOperation.models import Slot
 from .forms import ConsultationForm
-
+from django.contrib import messages
 # Create your views here.
 def home(request):
     dentalServices = DentalService.objects.all()
@@ -18,6 +18,7 @@ def home(request):
             data = form.cleaned_data['email']  
             print(data)
             form.save()
+            messages.success(request, 'Successfully added for consulation.')
             return redirect('home') 
         else:
             print('not valid')

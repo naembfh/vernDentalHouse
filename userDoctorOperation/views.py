@@ -4,6 +4,7 @@ from django.http import JsonResponse
 from django.urls import reverse
 from datetime import datetime
 from django.utils import timezone
+from django.contrib import messages
 
 def slots(request, serviceId):
     dentalService = get_object_or_404(DentalService, id=serviceId)
@@ -51,8 +52,8 @@ def bookAppointment(request):
             slot.patient = request.user
             slot.save()
 
-          
-            dashboard_url = reverse('dashboard')  
+            messages.success(request, 'Appointment created successfully.')
+            dashboard_url = reverse('userDoctorAppointment')  
 
             return JsonResponse({'success': True, 'message': 'Appointment booked successfully', 'dashboard_url': dashboard_url})
 

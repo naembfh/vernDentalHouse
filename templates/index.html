@@ -16,7 +16,7 @@
 <body>
     {% include "navbar.html" %}
   
-    {% include "showSuperUserCredentials.html" %}
+    
     {% if messages %}
     <!-- Message Modal -->
     <div class="modal" id="successModal">
@@ -41,7 +41,17 @@
         {% endblock content %}
     </main>
 
+    <div id="superuserModal" class="supermodal">
+        <div class="super-modal-content">
+            <span id="superCancelButton" class="super-cancel-button">X</span>
+            <h2>Superuser Login</h2>
+            <p>Username: admin</p>
+            <p>Password: <strong>vern1234</strong></p>
+            <p>Explore additional details in our GitHub README.md.</p>
+    <p>Stay tuned ,continuously enhance the application for you.</p>
     
+        </div>
+    </div>
 
     <script>
         const superuserModal = document.getElementById('superuserModal');
